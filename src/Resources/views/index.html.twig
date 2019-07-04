@@ -1,0 +1,113 @@
+{% extends '@SyliusAdmin/layout.html.twig' %}
+
+{% import '@SyliusUi/Macro/buttons.html.twig' as buttons %}
+{% import '@SyliusUi/Macro/table.html.twig' as table %}
+{% import '@SyliusAdmin/Macro/breadcrumb.html.twig' as breadcrumb %}
+{% import '@SyliusUi/Macro/messages.html.twig' as messages %}
+
+{% block title %}{{ 'mango-sylius.ui.sortingPlugin.header'|trans }}{% endblock %}
+
+{% block content %}
+
+	<form method="post" action="{{ path('mango_sylius_admin_sorting_products_save') }}">
+		<div class="ui stackable two column grid">
+			<div class="column">
+				<h1 class="ui header">
+					<i class="circular sort icon"></i>
+					<div class="content">
+						{{ 'mango-sylius.ui.sortingPlugin.header'|trans }}
+						<div class="sub header">{{ 'mango-sylius.ui.sortingPlugin.subHeader'|trans }}</div>
+					</div>
+				</h1>
+
+				{% if taxon is defined %}
+					{% set breadcrumbs = [
+						{ label: 'sylius.ui.administration'|trans, url: path('sylius_admin_dashboard') },
+						{ label: 'mango-sylius.ui.sortingPlugin.header'|trans, url: path('mango_sylius_admin_sorting_index') },
+						{ label: taxon.name },
+					] %}
+				{% else %}
+					{% set breadcrumbs = [
+						{ label: 'sylius.ui.administration'|trans, url: path('sylius_admin_dashboard') },
+						{ label: 'mango-sylius.ui.sortingPlugin.header'|trans },
+					] %}
+				{% endif %}
+
+				{{ breadcrumb.crumble(breadcrumbs) }}
+			</div>
+
+			<div class="middle aligned column">
+				<div class="ui right floated buttons">
+					<label for="sort-tree-toggler"
+						   class="ui labeled icon button">
+						<i class="icon list"></i>
+						{{ 'mango-sylius.ui.sortingPlugin.toggleTaxons'|trans }}
+					</label>
+					{% set disableButton = taxon is not defined or (taxon is defined and productsTaxons|length == 0) %}
+					<button type="submit"
+							class="ui labeled icon button primary {% if disableButton %}disbled{% endif %}"
+							{% if disableButton %}disabled{% endif %}>
+						<i class="icon checkmark"></i>
+						{{ 'sylius.ui.save_positions'|trans }}
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="sortPage">
+			<input type="checkbox" checked="checked" class="sortPage-toggler" id="sort-tree-toggler">
+			<div class="sortPage-tree">
+				{{ render(path('sylius_admin_partial_taxon_tree', {'template': '@MangoSyliusSortingPlugin/_taxonTree.html.twig'})) }}
+			</div>
+			<div class="sylius-product-index sortPage-products">
+				{% if taxon is defined %}
+					{% if productsTaxons|length > 0 %}
+						<div id="sortableProducts" class="ui cards">
+							{% for productTaxon in productsTaxons %}
+								{% set product = productTaxon.product %}
+								<div class="sortableItem card">
+									<div class="content">
+										{{ include('@MangoSyliusSortingPlugin/_mainImage.html.twig') }}
+										<div class="header">
+											{{ product.name }}
+										</div>
+										<div>
+											<a
+												class="sortableItem-link"
+												href="{{ path('sylius_admin_product_update', {'id': product.id}) }}"
+												target="_blank">
+												<i class="external alternate icon"></i>
+											</a>
+											<span class="meta">
+											{{ product.code }}
+										</span>
+										</div>
+									</div>
+									<input type="hidden" name="id[]" value="{{ productTaxon.id }}">
+								</div>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ messages.info('mango-sylius.ui.sortingPlugin.noProducts') }}
+					{% endif %}
+				{% else %}
+					{{ messages.info('mango-sylius.ui.sortingPlugin.chooseTaxon') }}
+				{% endif %}
+			</div>
+		</div>
+	</form>
+
+
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+
+	{% include 'SyliusUiBundle::_stylesheets.html.twig' with {'path': 'bundles/mangosyliussortingplugin/admin/css/sorting-plugin.css'} %}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	{% include 'SyliusUiBundle::_javascripts.html.twig' with {'path': 'bundles/mangosyliussortingplugin/admin/js/sorting-plugin.js'} %}
+{% endblock %}

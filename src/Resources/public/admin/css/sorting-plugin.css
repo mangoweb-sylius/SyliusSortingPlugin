@@ -1,0 +1,50 @@
+.sortPage {
+	padding: 0 .5em;
+	margin-top: .85em;
+	padding-top: 2px;
+	overflow: auto;
+	height: calc(100vh - 220px);
+}
+
+.sortPage-toggler {
+	position: absolute;
+	pointer-events: none;
+	opacity: 0;
+}
+
+.sortPage-toggler:checked + .sortPage-tree {
+	display: block;
+}
+
+.sortPage-tree {
+	margin-bottom: .5em;
+	display: none;
+}
+
+.sortPage-products{
+	width: 100%;
+}
+
+.sortableItem {
+	cursor: move;
+	flex: 0 0 290px;
+}
+
+.sortableItem-placeholder {
+	opacity: 0;
+}
+
+.sortableItem-image {
+	margin-bottom: 0 !important;
+}
+
+@media (min-width: 1200px) {
+	.sortPage {
+		display: flex;
+	}
+
+	.sortPage-tree {
+		flex: 0 0 290px;
+		margin-right: 1em;
+	}
+}

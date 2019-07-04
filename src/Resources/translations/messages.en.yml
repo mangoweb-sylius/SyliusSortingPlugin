@@ -1,0 +1,11 @@
+mango-sylius:
+    ui:
+        sortingPlugin:
+            header: Sorting products
+            menuTitle: Sorting products
+            subHeader: Select taxon and drag & drop product cards. When done, click Save positions.
+            chooseTaxon: Choose taxon
+            noProducts: No products in taxon
+            successMessage: Success, products has been sorted.
+            noProductMessage: No product for sorting.
+            toggleTaxons: Toggle taxons

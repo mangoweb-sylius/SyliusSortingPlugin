@@ -1,0 +1,23 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+        public: false
+
+    MangoSylius\SortingPlugin\Menu\SortingMenuBuilder:
+        tags:
+            - name: kernel.event_listener
+              event: sylius.menu.admin.main
+              method: buildMenu
+
+    MangoSylius\SortingPlugin\Controller\SortingController:
+        public: true
+        arguments:
+            $templatingEngine: '@templating'
+            $taxonRepository: '@sylius.repository.taxon'
+            $productTaxonRepository: '@sylius.repository.product_taxon'
+            $entityManager: '@doctrine.orm.entity_manager'
+            $eventDispatcher: '@event_dispatcher'
+            $router: '@router'
+            $translator: '@translator'
+            $flashBag: '@session.flash_bag'

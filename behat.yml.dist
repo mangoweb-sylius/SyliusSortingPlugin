@@ -1,0 +1,21 @@
+imports:
+    - vendor/sylius/sylius/behat.yml.dist
+    - tests/Behat/Resources/suites.yml
+
+default:
+    extensions:
+        FriendsOfBehat\ContextServiceExtension:
+            imports:
+                - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/services.xml
+                - tests/Behat/Resources/services.xml
+
+        FriendsOfBehat\SymfonyExtension:
+            kernel:
+                class: \App\Kernel
+                path: tests/Application/src/Kernel.php
+                bootstrap: vendor/autoload.php
+                env: test
+
+        Behat\MinkExtension:
+            base_url: "http://localhost:8000/"
+            default_session: symfony

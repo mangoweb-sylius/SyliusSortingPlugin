@@ -1,0 +1,15 @@
+mango_sylius_admin_sorting_index:
+    path: /sorting
+    defaults:
+        _controller: MangoSylius\SortingPlugin\Controller\SortingController:index
+
+mango_sylius_admin_sorting_products_save:
+    path: /sorting/save
+    defaults:
+        _controller: MangoSylius\SortingPlugin\Controller\SortingController:savePositions
+
+mango_sylius_admin_sorting_products:
+    path: /sorting/taxon/{taxonId}
+    defaults:
+        _controller: MangoSylius\SortingPlugin\Controller\SortingController:products
+
