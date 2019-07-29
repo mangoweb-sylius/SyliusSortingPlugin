@@ -20,6 +20,10 @@ Sorting Plugin
 ## Features
 
 * Sort products in taxons by simple drag and drop
+  * Well-arranged overview of all products in the taxon
+  * Disabled products greyed out
+  * Direct links into product details
+  * Optionally hidden taxon tree to get even more space
 
 <p align="center">
 	<img src="https://raw.githubusercontent.com/mangoweb-sylius/SyliusSortingPlugin/master/doc/sorting.png"/>
