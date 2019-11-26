@@ -25,7 +25,7 @@ final class SortingPage extends SymfonyPage implements SortingPageInterface
 		]);
 	}
 
-	public function getPosition($arg1, int $int)
+	public function getPosition($arg1, int $int): void
 	{
 		$Page = $this->getSession()->getPage();
 		$firstE = $Page->find('css', '#sortableProducts .sortableItem:nth-child(' . $int . ') .content .header')->getText();
@@ -34,7 +34,7 @@ final class SortingPage extends SymfonyPage implements SortingPageInterface
 		}
 	}
 
-	public function getState($arg1)
+	public function getState($arg1): void
 	{
 		$Page = $this->getSession()->getPage();
 		$elementA = $Page->find('css', '#sortableProducts .sortableItem:nth-child(1)')->getHtml();

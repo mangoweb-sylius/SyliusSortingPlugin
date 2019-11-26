@@ -36,9 +36,9 @@ final class ManagingSortingContext implements Context
 	}
 
 	/**
-	 * @When I open the :arg1 taxon page
+	 * @Given I open the :arg1 taxon sorting page
 	 */
-	public function iOpenTheTaxonPage($arg1)
+	public function iOpenTheTaxonSortingPage($arg1)
 	{
 		$taxon = $this->taxonRepository->findOneBy(['code' => $arg1]);
 		$this->sortingPage->open(['taxonId' => $taxon->getId()]);
@@ -64,6 +64,7 @@ final class ManagingSortingContext implements Context
 	}
 
 	/**
+	 * @Given /^"([^"]*)" product is in 1st position$/
 	 * @Then I should see the :arg1 in 1st position
 	 */
 	public function iShouldSeeTheInStPosition($arg1)

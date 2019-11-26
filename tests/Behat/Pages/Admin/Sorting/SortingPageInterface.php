@@ -8,9 +8,9 @@ use FriendsOfBehat\PageObjectExtension\Page\SymfonyPageInterface;
 
 interface SortingPageInterface extends SymfonyPageInterface
 {
-	public function saveSorting();
+	public function saveSorting(): void;
 
-	public function getPosition($arg1, int $int);
+	public function getPosition($arg1, int $int): void;
 
-	public function getState($arg1);
+	public function getState($arg1): void;
 }
