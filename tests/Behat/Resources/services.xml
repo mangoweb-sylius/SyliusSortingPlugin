@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		   xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+	<services>
+		<defaults public="true"/>
+
+		<service id="sylius.behat.context.ui.admin.sorting"
+				 class="Tests\MangoSylius\SortingPlugin\Behat\Context\Ui\Admin\ManagingSortingContext">
+			<argument type="service" id="Tests\MangoSylius\SortingPlugin\Behat\Pages\Admin\Sorting\SortingPageInterface"/>
+			<argument type="service" id="sylius.behat.notification_checker"/>
+			<argument type="service" id="sylius.repository.taxon"/>
+		</service>
+
+		<service id="Tests\MangoSylius\SortingPlugin\Behat\Pages\Admin\Sorting\SortingPageInterface"
+				 class="Tests\MangoSylius\SortingPlugin\Behat\Pages\Admin\Sorting\SortingPage"
+				 parent="sylius.behat.symfony_page"
+				 public="true"
+		/>
+
+	</services>
+</container>
