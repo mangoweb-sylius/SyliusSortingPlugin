@@ -1,0 +1,11 @@
+mango-sylius:
+    ui:
+        sortingPlugin:
+            header: Produkte sortieren
+            menuTitle: Produkte sortieren
+            subHeader: Wählen Sie die Produktgruppe und drag & drop die Produktkarten. Wenn fertig, klicken Sie Positionen speichern.
+            chooseTaxon: Produktgruppe wählen
+            noProducts: Keine Produkte in diese Produktgruppe
+            successMessage: Elfolgreich, die Produkte sind sortiert.
+            noProductMessage: Keine Produkte zu sortieren.
+            toggleTaxons: Produktgruppen an/aus
