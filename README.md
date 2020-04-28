@@ -54,8 +54,11 @@ Sorting Plugin
 ### Testing
 
 After your changes you must ensure that the tests are still passing.
+
 ```bash
 $ composer install
+$ bin/console doctrine:schema:create -e test
+$ bin/behat
 $ bin/phpstan.sh
 $ bin/ecs.sh
 ```
