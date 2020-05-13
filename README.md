@@ -33,7 +33,7 @@ Sorting Plugin
 
 1. Run `$ composer require mangoweb-sylius/sylius-sorting-plugin`.
 2. Register `\MangoSylius\SortingPlugin\MangoSyliusSortingPlugin` in your Kernel.
-3. Import `@MangoSyliusSortingPlugin/Resources/config/routing.yml` in the routing.yml.
+3. Import `@MangoSyliusSortingPlugin/Resources/config/routing.yml` in the routing.yml with a prefix of /admin.
 
 ## Usage
 
